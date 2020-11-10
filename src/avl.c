@@ -1,13 +1,7 @@
 #include <stdio.h> 
 #include <stdlib.h>
-
-struct AVLNode {
-    int key;
-    struct AVLNode *left, *right;
-    int height;
-};
-
-
+#include "avl.h"
+    
 int height (struct AVLNode* node)
 {
     if (node == NULL) return 0;
@@ -96,30 +90,12 @@ struct AVLNode* AVL_add (struct AVLNode* node, int key)
     return node;
 }
 
-void preOrder (struct AVLNode* root)
+void printTree (struct AVLNode* node)
 {
-    if (root != NULL)
+    if (node != NULL)
     {
-        printf ("%d ", root->key);
-        preOrder (root->left);
-        preOrder (root->right);
+        printf ("%d ", node->key);
+        printTree (node->left);
+        printTree (node->right);
     }
-}
-
-int main () {
-    
-    struct AVLNode* tree = NULL;
-    
-    tree = AVL_add (tree, 10);
-    tree = AVL_add (tree, 20);
-    tree = AVL_add (tree, 30);
-    tree = AVL_add (tree, 40);
-    tree = AVL_add (tree, 50);
-    tree = AVL_add (tree, 25);
-    
-    printf ("Preorder traversal of the constructed AVL tree is \n");
-    preOrder (tree);
-    printf ("\n");
-    
-    return 0;
-}
+} 
